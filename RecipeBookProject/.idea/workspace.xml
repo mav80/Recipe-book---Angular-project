@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6707aebe-f7ec-45f3-a577-5057b77cc119" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/app/shopping-list/shopping-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shopping-list/shopping-list.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/shopping-list/shopping-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shopping-list/shopping-list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shopping-list/shopping-edit/shopping-edit.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shopping-list/shopping-edit/shopping-edit.component.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -24,14 +23,14 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="3" />
-          <entry key="html" value="9" />
+          <entry key="html" value="10" />
           <entry key="ts" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="3" />
-          <entry key="HTML" value="9" />
+          <entry key="HTML" value="10" />
           <entry key="TypeScript" value="8" />
         </counts>
       </usages-collector>
@@ -43,13 +42,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="1380" />
+          <entry key="html" value="1657" />
           <entry key="ts" value="539" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="1380" />
+          <entry key="HTML" value="1657" />
           <entry key="TypeScript" value="539" />
         </counts>
       </usages-collector>
@@ -70,11 +69,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/recipes/recipe-detail/recipe-detail.component.ts">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/recipes/recipe-detail/recipe-detail.component.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
@@ -83,7 +77,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/shopping-list/shopping-list.component.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
@@ -91,6 +85,15 @@
               <folding>
                 <element signature="n#style#0;n#a#0;n#ul#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/shopping-list/shopping-edit/shopping-edit.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="690">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
             </state>
           </provider>
         </entry>
@@ -172,6 +175,7 @@
         <option value="$PROJECT_DIR$/src/app/shared/ingredient.model.ts" />
         <option value="$PROJECT_DIR$/src/app/shopping-list/shopping-list.component.ts" />
         <option value="$PROJECT_DIR$/src/app/shopping-list/shopping-list.component.html" />
+        <option value="$PROJECT_DIR$/src/app/shopping-list/shopping-edit/shopping-edit.component.html" />
       </list>
     </option>
   </component>
@@ -193,7 +197,7 @@
     <option name="x" value="4" />
     <option name="y" value="3" />
     <option name="width" value="1899" />
-    <option name="height" value="2077" />
+    <option name="height" value="2099" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -260,6 +264,14 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="shopping-list" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="RecipeBookProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RecipeBookProject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="shopping-list" type="462c0819:PsiDirectoryNode" />
+              <item name="shopping-edit" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -269,7 +281,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547764609181" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547834713530" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -328,15 +340,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1547753917579</updated>
-      <workItem from="1547753918874" duration="7505000" />
+      <workItem from="1547753918874" duration="8698000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7505000" />
+    <option name="totallyTimeSpent" value="8698000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="3" width="1899" height="2077" extended-state="0" />
+    <frame x="4" y="3" width="1899" height="2099" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
@@ -349,7 +361,7 @@
       <window_info anchor="bottom" id="TypeScript" weight="0.32954547" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.32954547" />
+      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.32566845" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -491,6 +503,13 @@
           <folding>
             <element signature="n#style#0;n#a#0;n#ul#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shopping-list/shopping-edit/shopping-edit.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
