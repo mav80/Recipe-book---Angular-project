@@ -14,6 +14,15 @@ export class DataStorageService {
     return this.http.put('https://my-recipe-book-mav.firebaseio.com/recipes.json', this.recipeService.getRecipes());
   }
 
+  getRecipes() {
+    this.http.get('https://my-recipe-book-mav.firebaseio.com/recipes.json').subscribe(
+      (response: Response) => {
+        const recipes: Recipe[] = response.json();
+        console.log(recipes);
+        this.recipeService.setRecipes(recipes);
 
+      }
+    );
+  }
 
 }
