@@ -1,3 +1,18 @@
-<p>
-  signin works!
-</p>
+
+<div class="rov">
+  <div class="col-xs-12 col-sm-10 col-md-2">
+    <form (ngSubmit)="onSignIn(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="email">eMail</label>
+        <input type="email" id="email" name="email" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" ngModel class="form-control">
+      </div>
+      <button class="btn btn-primary" type="submit">Log in</button>
+    </form>
+  </div>
+</div>
+
+
