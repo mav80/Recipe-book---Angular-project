@@ -3,7 +3,7 @@ import {RecipeService} from '../recipes/recipe.service';
 import {Recipe} from '../recipes/recipe.model';
 import {map} from 'rxjs/operators';
 import {AuthService} from '../auth/auth.service';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpParams, HttpRequest} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +16,17 @@ export class DataStorageService {
 
   storeRecipes() {
     const token = this.authService.getToken();
-    return this.httpClient.put('https://my-recipe-book-mav.firebaseio.com/recipes.json',
-      this.recipeService.getRecipes(), {
-      params: new HttpParams().set('auth', token)
-      });
+    // return this.httpClient.put('https://my-recipe-book-mav.firebaseio.com/recipes.json',
+    //   this.recipeService.getRecipes(), {
+    //   params: new HttpParams().set('auth', token)
+    //   });
+
+    // obserce progress of file upload
+
+    const req = new HttpRequest('PUT', 'https://my-recipe-book-mav.firebaseio.com/recipes.json',
+      this.recipeService.getRecipes(), {reportProgress: true, params: new HttpParams().set('auth', token)} );
+
+    return this.httpClient.request(req);
   }
 
   getRecipes() {
