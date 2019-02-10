@@ -3,7 +3,7 @@ import {RecipeService} from '../recipes/recipe.service';
 import {Recipe} from '../recipes/recipe.model';
 import {map} from 'rxjs/operators';
 import {AuthService} from '../auth/auth.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +16,25 @@ export class DataStorageService {
 
   storeRecipes() {
     const token = this.authService.getToken();
-    return this.httpClient.put('https://my-recipe-book-mav.firebaseio.com/recipes.json?auth='  + token, this.recipeService.getRecipes());
+    return this.httpClient.put('https://my-recipe-book-mav.firebaseio.com/recipes.json',
+      this.recipeService.getRecipes(), {
+      params: new HttpParams().set('auth', token)
+      });
   }
 
   getRecipes() {
 
     const token = this.authService.getToken();
 
-    this.httpClient.get<Recipe[]>('https://my-recipe-book-mav.firebaseio.com/recipes.json?auth=' + token).pipe
+    // this.httpClient.get<Recipe[]>('https://my-recipe-book-mav.firebaseio.com/recipes.json?auth=' + token).pipe //original method working fine, the one below is for testing
+
+    this.httpClient.get<Recipe[]>('https://my-recipe-book-mav.firebaseio.com/recipes.json?auth=' + token, {
+      observe: 'body',
+      responseType: 'json'
+    }).pipe
     (map((recipes) => {
+      // console.log(recipes);
+      // return recipes;
         for (let recipe of recipes) {
           if (!recipe['ingredients']) {
             recipe['ingredients'] = [];
