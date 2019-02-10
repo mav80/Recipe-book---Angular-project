@@ -6,10 +6,11 @@ import {SharedModule} from '../shared/shared.module';
 import {AppRoutingModule} from '../app-routing.module';
 import {RecipeService} from '../recipes/recipe.service';
 import {DataStorageService} from '../shared/data-storage.service';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthInterceptor} from '../shared/auth.interceptor';
 
 @NgModule({
-  declarations: [HeaderComponent,
-    HomeComponent],
+  declarations: [HeaderComponent, HomeComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -19,7 +20,11 @@ import {DataStorageService} from '../shared/data-storage.service';
     AppRoutingModule,
     HeaderComponent
   ],
-  providers: [ RecipeService, DataStorageService]
+  providers: [
+    RecipeService,
+    DataStorageService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    ]
 
 })
 export class CoreModule { }
