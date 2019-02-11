@@ -13,18 +13,21 @@ export class ShoppingListService {
     new Ingredient('red beans', 381)
   ];
 
-  getIngredients() {
-    return this.ingredients.slice();
-  }
+  // code below is no longer used because now we use central store - ngrx
+  // getIngredients() {
+  //   return this.ingredients.slice();
+  // }
+  //
+  // addIngredient(ingredient: Ingredient) {
+  //   this.ingredients.push(ingredient);
+  //   this.ingredientsChanged.next(this.ingredients.slice());
+  // }
 
   getIngredient(index: number) {
     return this.ingredients[index];
   }
 
-  addIngredient(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
-    this.ingredientsChanged.next(this.ingredients.slice());
-  }
+
 
   addIngredients(ingredients: Ingredient[]) {
     this.ingredients.push(...ingredients); // instead of looping and adding
