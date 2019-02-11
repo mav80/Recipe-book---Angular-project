@@ -1,10 +1,8 @@
 import {Recipe} from './recipe.model';
-import {Injectable} from '@angular/core';
 import {Ingredient} from '../shared/ingredient.model';
-import {ShoppingListService} from '../shopping-list/shopping-list.service';
 import {Subject} from 'rxjs';
 
-@Injectable({providedIn: 'root'})
+
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
@@ -27,15 +25,21 @@ export class RecipeService {
       ])
   ];
 
-  constructor(private shoppingListService: ShoppingListService) {}
+  constructor(// private shoppingListService: ShoppingListService, //no longer necessary with ngrx
+              // private store: Store<{shoppingList: {ingredients: Ingredient[]}}>
+  ) {}
 
   getRecipes() {
     return this.recipes.slice(); // this returns a copy of our array, so we make sure only copy may be changed, not original one in service
   }
 
-  addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.shoppingListService.addIngredients(ingredients);
-  }
+  // no longer necessary as we do it directly in recipe detail component now
+  // addIngredientsToShoppingList(ingredients: Ingredient[]) {
+  //   // before ngrx
+  //   // this.shoppingListService.addIngredients(ingredients);
+  //
+  //   this.store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
+  // }
 
   getRecipe(index: number) {
     return this.recipes[index];
