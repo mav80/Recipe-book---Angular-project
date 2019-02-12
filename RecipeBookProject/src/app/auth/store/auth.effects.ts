@@ -11,7 +11,7 @@ import 'rxjs/add/operator/switchMap';
 @Injectable()
 export class AuthEffects {
   @Effect()
-  authSignup$: Observable<Action> = this.actions$.pipe(
+  authSignup: Observable<Action> = this.actions$.pipe(
     ofType(AuthActions.TRY_SIGNUP), // use the pipeable ofType operator
     map((action: AuthActions.TrySignup) => {
       return action.payload;
@@ -35,7 +35,45 @@ export class AuthEffects {
       ];
     }));
 
-    constructor(private actions$: Actions) {
 
-    }
+
+  @Effect()
+  authSignin: Observable<Action> = this.actions$.pipe(
+    ofType(AuthActions.TRY_SIGNIN), // use the pipeable ofType operator
+    map((action: AuthActions.TrySignin) => {
+      return action.payload;
+    }))
+    .switchMap((authData: {username: string, password: string}) => {
+      return fromPromise(firebase.auth().signInWithEmailAndPassword(authData.username,
+        authData.password));
+    })
+    .switchMap(() => {
+      return fromPromise(firebase.auth().currentUser.getIdToken());
+    })
+    .pipe(mergeMap((token: string) => {
+      return [
+        {
+          type: AuthActions.SIGNIN
+        },
+        {
+          type: AuthActions.SET_TOKEN,
+          payload: token
+        }
+      ];
+    }));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    constructor(private actions$: Actions) {}
 }
