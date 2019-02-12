@@ -36,7 +36,9 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this.store.dispatch(new AuthActions.Logout());
-    this.router.navigate(['/']);
+
+    // done as an effect now in auth effects
+    // this.router.navigate(['/']);
   }
 
   // pre-ngrx
