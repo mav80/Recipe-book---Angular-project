@@ -15,7 +15,19 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-    // pre-ngrx
+    return this.store.select('auth')
+      .take(1)
+      .map((authState: fromAuth.State) => {
+
+        if (!authState.authenticated) {
+          this.router.navigate(['/signin']);
+        }
+
+        return authState.authenticated;
+      });
+
+    // pre-ngrx:
+
     // if (!this.authService.isAuthenticated()) {
     //   this.router.navigate(['/']);
     //   return false;
@@ -23,15 +35,5 @@ export class AuthGuard implements CanActivate {
     //   return true;
     // }
 
-    const isAuthenticated = this.store.select('auth').map((authState: fromAuth.State) => {
-      return authState.authenticated;
-    });
-
-    if (!isAuthenticated) {
-      this.router.navigate(['/']);
-      return false;
-    } else {
-      return true;
-    }
   }
 }
