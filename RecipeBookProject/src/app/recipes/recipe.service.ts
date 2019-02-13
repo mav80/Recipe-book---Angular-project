@@ -33,33 +33,33 @@ export class RecipeService {
     return this.recipes.slice(); // this returns a copy of our array, so we make sure only copy may be changed, not original one in service
   }
 
-  // no longer necessary as we do it directly in recipe detail component now
+  // pre-ngrx
   // addIngredientsToShoppingList(ingredients: Ingredient[]) {
-  //   // before ngrx
-  //   // this.shoppingListService.addIngredients(ingredients);
+  //   before ngrx
+  //   this.shoppingListService.addIngredients(ingredients);
   //
   //   this.store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
   // }
 
-  getRecipe(index: number) {
-    return this.recipes[index];
-  }
-
-  addRecipe(recipe: Recipe) {
-    this.recipes.push(recipe);
-    this.recipesChanged.next(this.recipes.slice());
-  }
-
-  updateRecipe(index: number, newRecipe: Recipe) {
-    this.recipes[index] = newRecipe;
-    this.recipesChanged.next(this.recipes.slice());
-  }
-
-  deleteRecipe(index: number) {
-    this.recipes.splice(index, 1);
-    this.recipesChanged.next(this.recipes.slice());
-
-  }
+  // getRecipe(index: number) {
+  //   return this.recipes[index];
+  // }
+  //
+  // addRecipe(recipe: Recipe) {
+  //   this.recipes.push(recipe);
+  //   this.recipesChanged.next(this.recipes.slice());
+  // }
+  //
+  // updateRecipe(index: number, newRecipe: Recipe) {
+  //   this.recipes[index] = newRecipe;
+  //   this.recipesChanged.next(this.recipes.slice());
+  // }
+  //
+  // deleteRecipe(index: number) {
+  //   this.recipes.splice(index, 1);
+  //   this.recipesChanged.next(this.recipes.slice());
+  //
+  // }
 
 
   setRecipes(recipes: Recipe[]) {

@@ -5,6 +5,7 @@ import * as fromApp from '../../store/app.reducers';
 import {Observable} from 'rxjs';
 import * as fromAuth from '../../auth/store/auth.reducers';
 import * as AuthActions from '../../auth/store/auth.actions';
+import * as RecipeActions from '../../recipes/store/recipe.actions';
 import {Router} from '@angular/router';
 
 @Component({
@@ -31,7 +32,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onFetchData() {
-    this.dataStorageService.getRecipes();
+    this.store.dispatch(new RecipeActions.FetchRecipes());
   }
 
   onLogout() {
