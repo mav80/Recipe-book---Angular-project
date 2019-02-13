@@ -23,7 +23,7 @@ import {environment} from '../environments/environment';
   ],
   imports: [
     AuthModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'my-app'}),
     HttpClientModule,
     SharedModule,
     ShoppingListModule,
