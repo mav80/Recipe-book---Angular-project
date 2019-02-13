@@ -13,6 +13,7 @@ import {reducers} from './store/app.reducers';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from './auth/store/auth.effects';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {StoreRouterConnectingModule} from '@ngrx/router-store';
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffects]),
     StoreRouterConnectingModule,
+    StoreDevtoolsModule,
     AppRoutingModule    // make sure this one is at the end of imports!
   ],
   providers: [],
