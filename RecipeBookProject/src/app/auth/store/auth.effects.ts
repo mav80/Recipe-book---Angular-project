@@ -1,92 +1,78 @@
-import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {Action} from '@ngrx/store';
-import {map, mergeMap, tap} from 'rxjs/operators';
-import * as AuthActions from './auth.actions';
-import * as firebase from 'firebase';
-import {fromPromise} from 'rxjs-compat/observable/fromPromise';
-import 'rxjs/add/operator/switchMap';
+import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Router} from '@angular/router';
+import {map, tap, switchMap, mergeMap} from 'rxjs/operators';
+import { from } from 'rxjs';
+import * as firebase from 'firebase';
+
+import * as AuthActions from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
   @Effect()
-  authSignup: Observable<Action> = this.actions$.pipe(
-    ofType(AuthActions.TRY_SIGNUP), // use the pipeable ofType operator
-    map((action: AuthActions.TrySignup) => {
-      return action.payload;
-    }))
-      .switchMap((authData: {username: string, password: string}) => {
-        return fromPromise(firebase.auth().createUserWithEmailAndPassword(authData.username,
-          authData.password));
+  authSignup = this.actions$.pipe(
+    ofType(AuthActions.TRY_SIGNUP))
+    .pipe(map((action: AuthActions.TrySignup) => {
+        return action.payload;
       })
-    .switchMap(() => {
-      return fromPromise(firebase.auth().currentUser.getIdToken());
-    })
-    .pipe(mergeMap((token: string) => {
-      this.router.navigate(['/']);
-      return [
-        {
-          type: AuthActions.SIGNUP
-        },
-        {
-          type: AuthActions.SET_TOKEN,
-          payload: token
-        }
-      ];
-    }));
-
-
+      , switchMap((authData: { username: string, password: string }) => {
+        return from(firebase.auth().createUserWithEmailAndPassword(authData.username, authData.password));
+      })
+      , switchMap(() => {
+        return from(firebase.auth().currentUser.getIdToken());
+      })
+      , mergeMap((token: string) => {
+        return [
+          {
+            type: AuthActions.SIGNUP
+          },
+          {
+            type: AuthActions.SET_TOKEN,
+            payload: token
+          }
+        ];
+      }));
 
   @Effect()
-  authSignin: Observable<Action> = this.actions$.pipe(
-    ofType(AuthActions.TRY_SIGNIN), // use the pipeable ofType operator
-    map((action: AuthActions.TrySignin) => {
-      return action.payload;
-    }))
-    .switchMap((authData: {username: string, password: string}) => {
-      return fromPromise(firebase.auth().signInWithEmailAndPassword(authData.username,
-        authData.password));
-    })
-    .switchMap(() => {
-      return fromPromise(firebase.auth().currentUser.getIdToken());
-    })
-    .pipe(mergeMap((token: string) => {
-      this.router.navigate(['/']);
-      return [
-        {
-          type: AuthActions.SIGNIN
-        },
-        {
-          type: AuthActions.SET_TOKEN,
-          payload: token
-        }
-      ];
-    }));
-
-
-
+  authSignin = this.actions$.pipe(
+    ofType(AuthActions.TRY_SIGNIN))
+    .pipe(map((action: AuthActions.TrySignup) => {
+        return action.payload;
+      })
+      , switchMap((authData: { username: string, password: string }) => {
+        return from(firebase.auth().signInWithEmailAndPassword(authData.username, authData.password));
+      })
+      , switchMap(() => {
+        return from(firebase.auth().currentUser.getIdToken());
+      })
+      , mergeMap((token: string) => {
+        this.router.navigate(['/']);
+        return [
+          {
+            type: AuthActions.SIGNIN
+          },
+          {
+            type: AuthActions.SET_TOKEN,
+            payload: token
+          }
+        ];
+      }));
 
   @Effect({dispatch: false})
   authLogout = this.actions$.pipe(
-    ofType(AuthActions.LOGOUT)).pipe(
-    tap(() => {
+    ofType(AuthActions.LOGOUT))
+    .pipe(tap(() => {
       this.router.navigate(['/']);
     }));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    constructor(private actions$: Actions, private router: Router) {}
+  constructor(private actions$: Actions, private router: Router) {
+  }
 }
+
+
+
+
+
+
+
+

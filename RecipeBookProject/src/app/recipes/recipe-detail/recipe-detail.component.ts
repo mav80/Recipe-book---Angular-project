@@ -5,6 +5,7 @@ import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import * as fromRecipe from '../store/recipe.reducers';
 import * as RecipeActions from '../store/recipe.actions';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -32,7 +33,7 @@ export class RecipeDetailComponent implements OnInit {
     // before ngrx
     // this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
 
-    this.store.select('recipes').take(1)
+    this.store.select('recipes').pipe(take(1))
       .subscribe((recipeState: fromRecipe.State) => {
         this.store.dispatch(new ShoppingListActions
           .AddIngredients(recipeState.recipes[this.id].ingredients));
