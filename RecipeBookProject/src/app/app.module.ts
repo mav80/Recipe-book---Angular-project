@@ -14,6 +14,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from './auth/store/auth.effects';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffects]),
     StoreRouterConnectingModule,
-    StoreDevtoolsModule,
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
     AppRoutingModule    // make sure this one is at the end of imports!
   ],
   providers: [],
