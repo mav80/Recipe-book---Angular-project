@@ -28,7 +28,8 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
 
         if (state.ingredients[i].name === action.payload.name) {
 
-          // if ingredient already exists in the list, just add count (existing ingredient + new ingredient) and return ingredients without adding new one to the list
+          // if ingredient already exists in the list, just add count (existing ingredient + new ingredient) and return ingredients without
+          // adding new one to the list
           state.ingredients[i].amount = state.ingredients[i].amount + action.payload.amount;
 
           return {
@@ -55,6 +56,11 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
 
 
 
+
+
+
+
+
     case ShoppingListActions.UPDATE_INGREDIENT:
 
       const ingredient = state.ingredients[state.editedIngredientIndex];
@@ -64,6 +70,29 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
     };
 
       const ingredients = [...state.ingredients];
+      // const oldIngredients = [...state.ingredients];
+
+      for (let i = 0; i < state.ingredients.length; i ++) {
+
+        if (state.ingredients[i].name === action.payload.ingredient.name && i !== state.editedIngredientIndex) {
+
+          // if ingredient of such name already exists in the list and it's not the ingredient we currently edit, just add
+          // count (existing ingredient + new ingredient) to the old ingredient and delete edited one
+          state.ingredients[i].amount = state.ingredients[i].amount + action.payload.ingredient.amount;
+
+          let oldIngredients = [...state.ingredients];
+          oldIngredients.splice(state.editedIngredientIndex, 1);
+
+          return {
+            ...state,
+            ingredients: oldIngredients,
+            editedIngredient: null,
+            editedIngredientIndex: -1
+          };
+
+        }
+      }
+
       ingredients[state.editedIngredientIndex] = updatedIngredient;
 
       return {
@@ -75,9 +104,15 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
 
 
 
+
+
+
+
+
+
     case ShoppingListActions.DELETE_INGREDIENT:
 
-      const oldIngredients = [...state.ingredients];
+      let oldIngredients = [...state.ingredients];
 
       oldIngredients.splice(state.editedIngredientIndex, 1);
       return {
