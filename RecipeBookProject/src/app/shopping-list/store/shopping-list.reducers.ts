@@ -23,6 +23,23 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
 
 
     case ShoppingListActions.ADD_INGREDIENT:
+
+      for (let i = 0; i < state.ingredients.length; i ++) {
+
+        if (state.ingredients[i].name === action.payload.name) {
+
+          // if ingredient already exists in the list, just add count (existing ingredient + new ingredient) and return ingredients without adding new one to the list
+          state.ingredients[i].amount = state.ingredients[i].amount + action.payload.amount;
+
+          return {
+            ...state,
+            ingredients: [...state.ingredients]
+          };
+
+        }
+      }
+
+      // if ingredient not found, add to list
       return {
         ...state,
         ingredients: [...state.ingredients, action.payload]
