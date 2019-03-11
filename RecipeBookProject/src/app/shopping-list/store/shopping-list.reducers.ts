@@ -49,10 +49,71 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
 
 
     case ShoppingListActions.ADD_INGREDIENTS:
+
+      let oldIngredients2 = state.ingredients.map(a => ({...a}));
+      let payloadCopy = action.payload.map(a => ({...a}));
+
+      for (let i = 0; i < state.ingredients.length ; i++) {
+
+        for (let j = payloadCopy.length - 1; j > -1 ; j--) {
+
+          if (state.ingredients[i].name === payloadCopy[j].name) {
+            oldIngredients2[i].amount = oldIngredients2[i].amount + payloadCopy[j].amount;
+            payloadCopy.splice(j, 1);
+          }
+
+        }
+
+      }
+
+      oldIngredients2 = [...oldIngredients2, ...payloadCopy];
+
       return {
         ...state,
-        ingredients: [...state.ingredients, ...action.payload]
+        // ingredients: [...state.ingredients, ...action.payload] //original code
+        ingredients: oldIngredients2
       };
+
+
+
+
+    // case ShoppingListActions.ADD_INGREDIENTS:
+    //
+    //   console.log('action.payload na wejściu: ' + action.payload.length);
+    //
+    //   let oldIngredients2 = [...state.ingredients];
+    //   let payloadCopy = [...action.payload];
+    //
+    //   console.log('payloadCopy na wejściu: ' + payloadCopy.length);
+    //   console.log('oldIngredients2 na wejściu: ' + oldIngredients2.length);
+    //
+    //   for (let i = 0; i < state.ingredients.length ; i++) {
+    //
+    //     for (let j = payloadCopy.length - 1; j > -1 ; j--) {
+    //
+    //       if (oldIngredients2[i].name === payloadCopy[j].name) {
+    //         console.log('!!!!!!payload hit: ' + j + ' ' + payloadCopy[j].name);
+    //         // console.log(oldIngredients2[i].amount + ' ' + payloadCopy[j].amount);
+    //         oldIngredients2[i].amount = oldIngredients2[i].amount + payloadCopy[j].amount;
+    //         payloadCopy.splice(j, 1);
+    //       }
+    //
+    //     }
+    //
+    //   }
+    //
+    //   oldIngredients2 = [...oldIngredients2, ...payloadCopy];
+    //
+    //   console.log('oldIngredients2 length: ' + oldIngredients2.length);
+    //   console.log('action.payload length: ' + action.payload.length);
+    //   console.log('payloadCopy length: ' + payloadCopy.length);
+    //   console.log('oldIngredients2: ' + oldIngredients2);
+    //
+    //   return {
+    //     ...state,
+    //     // ingredients: [...state.ingredients, ...action.payload]
+    //     ingredients: oldIngredients2
+    //   };
 
 
 
