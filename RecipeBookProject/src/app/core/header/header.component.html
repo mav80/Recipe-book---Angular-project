@@ -19,10 +19,10 @@
         <li><a style="cursor: pointer" (click)="onLogout()" *ngIf="(authState | async).authenticated">Logout</a></li>
 
         <li class="dropdown" appDropdown *ngIf="(authState | async).authenticated">
-          <a style="cursor: pointer" class="dropdown-toggle" style="cursor: pointer" role="button">Manage <span class="caret"></span></a>
+          <a style="cursor: pointer" class="dropdown-toggle" style="cursor: pointer" role="button">Manage recipes<span class="caret"></span></a>
           <ul style="cursor: pointer" class="dropdown-menu">
-            <li><a (click)="onSaveData()">Save data</a></li>
-            <li><a  (click)="onFetchData()">Fetch data</a></li>
+            <li><a (click)="onSaveData()">Save recipes to database</a></li>
+            <li><a  (click)="onFetchData()">Fetch recipes from database</a></li>
           </ul>
         </li>
       </ul>
