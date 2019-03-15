@@ -1,1 +1,12 @@
 <h2>Welcome to the Recipe book!</h2>
+
+<p class="lead mb-0 text-justify">This simple app allows you to create your own recipes. Each recipe consists of
+  a name, description, link to an image and a list of ingredients. There is also a shopping list in which   you can put
+  ingredients manually, or directly from a recipe details component. <br> <br> Upon registering and signing in user can also store
+  recipes in online database and fetch them from there by using <i>Manage recipes</i> menu in the top right corner.</p>
+
+<p class="lead mb-0 text-justify">Example user credentials: <br>
+login: test@test.com <br>
+password: test@test.com</p>
+
+<button (click)="copyCredentialsToClipboard()" data-text-to-copy="test@test.com" id="btn" class="btn btn-primary">Copy credentials to clipboard</button>
