@@ -7,6 +7,7 @@ import {Store} from '@ngrx/store';
 import * as RecipeActions from '../store/recipe.actions';
 import {Recipe} from '../recipe.model';
 import * as fromRecipe from '../store/recipe.reducers';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class RecipeEffects {
@@ -26,6 +27,7 @@ export class RecipeEffects {
             recipe['ingredients'] = [];
           }
         }
+        this.router.navigate(['/recipes']);
         return {
           type: RecipeActions.SET_RECIPES,
           payload: recipes
@@ -44,7 +46,8 @@ export class RecipeEffects {
 
   constructor(private actions$: Actions,
               private httpClient: HttpClient,
-              private store: Store<fromRecipe.FeatureState>) {
+              private store: Store<fromRecipe.FeatureState>,
+              private router: Router) {
   }
 }
 
